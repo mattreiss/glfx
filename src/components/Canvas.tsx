@@ -16,10 +16,11 @@ type EffectProps = {
 type CanvasProps = {
     width: number;
     height: number;
-    onClick?: () => void;
     image: TexImageSource,
     innerRef: MutableRefObject<HTMLCanvasElement>,
     effects?: EffectProps[]
+    onClick?: () => void;
+    onChange?: () => void;
 };
 
 const Canvas : React.FC<CanvasProps> = ({
@@ -28,6 +29,7 @@ const Canvas : React.FC<CanvasProps> = ({
     image,
     effects,
     innerRef,
+    onChange,
     ...props
 }) => {
     useEffect(function applyEffects(){
@@ -49,6 +51,7 @@ const Canvas : React.FC<CanvasProps> = ({
             })
         })
         render2dImages([_canvas], innerRef.current);
+        onChange?.()
     }, [
         width,
         height,

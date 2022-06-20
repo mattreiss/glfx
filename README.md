@@ -27,7 +27,7 @@ export const Preview = () => {
                     }
                 }, {
                     vibrance: {
-                        0.9,
+                        amount: 0.9,
                     }
                 }, {
                     sepia: {
