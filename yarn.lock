@@ -257,6 +257,11 @@ function-bind@^1.1.1:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
+glfx-es6@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/glfx-es6/-/glfx-es6-0.0.3.tgz#46cedd8cf66e792ee92bdf87d16ad7f00dc19a0c"
+  integrity sha512-6tVYROn9ZhRPQ0FhLSKDBsm69Lih3PUmME3NsUY28eBY01dXU6l+pNZ06H/aZikS1fsAvJCF3OEgGgdg3xDHZg==
+
 glob@^7.1.6:
   version "7.2.3"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.2.3.tgz#b8df0fb802bbfa8e89bd1d938b4e16578ed44f2b"
