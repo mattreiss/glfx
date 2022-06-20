@@ -13,6 +13,27 @@ type EffectProps = {
     curves?: fx.CurvesOptions
 }
 
+export function applyEffects(
+    image:TexImageSource,
+    effects?: EffectProps[]
+) {
+    const _canvas = document.createElement('canvas');
+    _canvas.width = image.width;
+    _canvas.height = image.height;
+    renderWebGLImage(image, _canvas);
+    effects?.forEach((effectProps: EffectProps) => {
+        console.log('render Canvas', effectProps);
+        Object.keys(effectProps).forEach((name) => {
+            const _name = name as keyof typeof effectProps;
+            if (effectProps[_name]) {
+                const options: any = effectProps[_name];
+                fx[_name](_canvas, _canvas, options);
+            }
+        })
+    })
+    return _canvas;
+}
+
 type CanvasProps = {
     width: number;
     height: number;
@@ -32,24 +53,11 @@ const Canvas : React.FC<CanvasProps> = ({
     onChange,
     ...props
 }) => {
-    useEffect(function applyEffects(){
+    useEffect(() => {
         if (!innerRef.current) {
             return;
         }
-        const _canvas = document.createElement('canvas');
-        _canvas.width = width;
-        _canvas.height = height;
-        renderWebGLImage(image, _canvas);
-        effects?.forEach((effectProps: EffectProps) => {
-            console.log('render Canvas', effectProps);
-            Object.keys(effectProps).forEach((name) => {
-                const _name = name as keyof typeof effectProps;
-                if (effectProps[_name]) {
-                    const options: any = effectProps[_name];
-                    fx[_name](_canvas, _canvas, options);
-                }
-            })
-        })
+        const _canvas = applyEffects(image, effects);
         render2dImages([_canvas], innerRef.current);
         onChange?.()
     }, [
