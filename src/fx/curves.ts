@@ -10,10 +10,11 @@ import { clamp, renderWebGLImage, runFragmentShader, SplineInterpolator } from '
 //     return array;
 // }
 
+export type Vec2 = [number, number]
 export type CurvesOptions = {
-    red: number[];
-    green?: number[];
-    blue?: number[];
+    red: Vec2[];
+    green?: Vec2[];
+    blue?: Vec2[];
 }
 
 /**

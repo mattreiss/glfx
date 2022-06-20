@@ -2,7 +2,7 @@ import React, { MutableRefObject, useEffect } from 'react';
 import { render2dImages, renderWebGLImage } from '../canvas';
 import * as fx from '../fx';
 
-type EffectProps = {
+export type EffectProps = {
     brightnessContrast?: fx.BrightnessContrastOptions,
     denoise?: fx.DenoiseOptions,
     noise?: fx.NoiseOptions,
