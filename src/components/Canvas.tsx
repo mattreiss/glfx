@@ -30,7 +30,7 @@ const Canvas : React.FC<CanvasProps> = ({
     innerRef,
     ...props
 }) => {
-    useEffect(function render(){
+    useEffect(function applyEffects(){
         if (!innerRef.current) {
             return;
         }
