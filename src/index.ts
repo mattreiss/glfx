@@ -1,7 +1,6 @@
-import Canvas, { applyEffects, EffectProps } from './components/Canvas';
+import Canvas, { applyEffects } from './components/Canvas';
 
 export {
     Canvas,
-    applyEffects,
-    EffectProps
+    applyEffects 
 }

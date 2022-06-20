@@ -50,26 +50,26 @@ function App() {
             onChange={() => console.log('change')}
             effects={[
               {
-                  denoise: {
-                      exponent: 1,
-                  }
+                  // denoise: {
+                  //     exponent: 1,
+                  // }
               }, {
-                  noise: {
-                      amount: 0.5,
-                  }
+                  // noise: {
+                  //     amount: 0.5,
+                  // }
               }, {
-                  hueSaturation: {
-                      hue: 0,
-                      saturation: 0.9,
-                  }
+                  // hueSaturation: {
+                  //     hue: 0,
+                  //     saturation: 0.9,
+                  // }
               }, {
-                  vibrance: {
-                    amount: 0.9,
-                  }
+              //     vibrance: {
+              //       amount: 0.9,
+              //     }
               }, {
-                  sepia: {
-                      amount: 0.1
-                  }
+              //     sepia: {
+              //         amount: 0.1
+              //     }
               }, {
                   swirl: {
                       center: [ width / 2, height / 2 ],
@@ -77,16 +77,16 @@ function App() {
                       angle: -Math.PI * 2,
                   }
               }, {
-                  curves: {
-                      red: [[0,0], [1, 1]],
-                      green: [[0,0.2], [1,1]],
-                      blue: [[0,1], [0.5,0.7], [1,1]],
-                  }
+                  // curves: {
+                  //     red: [[0,1], [1, 1]],
+                  //     green: [[0,0.2], [1,1]],
+                  //     blue: [[0,1], [0.5,0.7], [1,1]],
+                  // }
               }, {
-                  brightnessContrast: {
-                      brightness:  0,
-                      contrast:  0.01,
-                  }
+                  // brightnessContrast: {
+                  //     brightness:  -0.4,
+                  //     contrast:  0.8,
+                  // }
               }
           ]}
           />

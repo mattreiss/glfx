@@ -1476,10 +1476,10 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@mattreiss/glfx@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@mattreiss/glfx/-/glfx-1.0.2.tgz#f3db78baf0c54f9a057fa59d43833f1864fdc2de"
-  integrity sha512-qt80qCSnq3cBn0yglLVZu/l6m/BGSFB2dcjYf3SeZ1AZDeqiFEuDkoLIxfPHPCIX28pKsQj+uomIvLPuGYe5Bw==
+"@mattreiss/glfx@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@mattreiss/glfx/-/glfx-1.0.5.tgz#0bd0cbfdf7b1f9a26a2110e38f55bcb64aa1f74e"
+  integrity sha512-fPHSvS9o+mg5SNH3f/y414TN08huxiWW/5bOVHtDYlVriuADHqci9AUeNtaVMqq55D7nVAEgEGD6bP73OH+6Rg==
   dependencies:
     glfx-es6 "^0.0.3"
 

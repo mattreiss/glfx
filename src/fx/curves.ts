@@ -36,7 +36,11 @@ export function curves(
 ) {
     const fxcanvas = fx.canvas();
     const texture = fxcanvas.texture(image);
-    fxcanvas.draw(texture).curves(options.red, options.green, options.blue).update();
+    fxcanvas.draw(texture).curves(
+        [...options.red],
+        [...(options.green || options.red)], 
+        [...(options.blue || options.red)]
+    ).update();
     renderWebGLImage(fxcanvas, canvas);
     return;
 
