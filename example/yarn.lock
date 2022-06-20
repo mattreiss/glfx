@@ -1476,10 +1476,12 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@mattreiss/glfx@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@mattreiss/glfx/-/glfx-1.0.0.tgz#295a937b58ccacf1b82df348a750dab1b56206ef"
-  integrity sha512-KUx/Q+TADAiZ1p7D93hBoJA+o9a/cBtHTUgTsi6ol3lNZ9lyj3vrkWFh9IhKY9ya6NKsMhjbTkW2E/pBufB2nQ==
+"@mattreiss/glfx@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@mattreiss/glfx/-/glfx-1.0.1.tgz#e580ac0f93aedf460c8eac3043f326f77a5226de"
+  integrity sha512-/artepsbAQxp42fW2TS6uysh6m/mh7D1J/MVCHwkNJMq0Xj7mRqClJvb/yPCv2zODvLeH/AXbpHFaojUY+XF9Q==
+  dependencies:
+    glfx-es6 "^0.0.3"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -4494,6 +4496,11 @@ get-symbol-description@^1.0.0:
   dependencies:
     call-bind "^1.0.2"
     get-intrinsic "^1.1.1"
+
+glfx-es6@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/glfx-es6/-/glfx-es6-0.0.3.tgz#46cedd8cf66e792ee92bdf87d16ad7f00dc19a0c"
+  integrity sha512-6tVYROn9ZhRPQ0FhLSKDBsm69Lih3PUmME3NsUY28eBY01dXU6l+pNZ06H/aZikS1fsAvJCF3OEgGgdg3xDHZg==
 
 glob-parent@^5.1.2, glob-parent@~5.1.2:
   version "5.1.2"
