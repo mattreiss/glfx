@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useEffect } from 'react';
+import React, { MutableRefObject, useEffect, useRef } from 'react';
 import { render2dImages, renderWebGLImage } from '../canvas';
 import * as fx from '../fx';
 
@@ -38,7 +38,7 @@ type CanvasProps = {
     width: number;
     height: number;
     image: TexImageSource,
-    innerRef: MutableRefObject<HTMLCanvasElement>,
+    innerRef: MutableRefObject<HTMLCanvasElement | undefined>,
     effects?: EffectProps[]
     onClick?: () => void;
     onChange?: () => void;
@@ -53,12 +53,14 @@ const Canvas : React.FC<CanvasProps> = ({
     onChange,
     ...props
 }) => {
+    const ref = useRef<HTMLCanvasElement>();    
     useEffect(() => {
-        if (!innerRef.current) {
+        const canvas = innerRef.current || ref.current;
+        if (!canvas) {
             return;
         }
         const _canvas = applyEffects(image, effects);
-        render2dImages([_canvas], innerRef.current);
+        render2dImages([_canvas], canvas);
         onChange?.()
     }, [
         width,
@@ -70,9 +72,10 @@ const Canvas : React.FC<CanvasProps> = ({
 
     return (
         <canvas 
-            ref={innerRef}
+            ref={innerRef ? innerRef as any : ref}
             width={width}
             height={height}
+            style={{ border: '1px solid red' }}
             {...props} />
     )
 };

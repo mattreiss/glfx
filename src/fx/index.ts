@@ -1,4 +1,5 @@
 export * from "./brightnessContrast";
+export * from "./bulgePinch";
 export * from "./curves";
 export * from "./denoise";
 export * from "./filter";
@@ -7,3 +8,4 @@ export * from "./noise";
 export * from "./sepia";
 export * from "./swirl";
 export * from "./vibrance";
+export * from "./vignette";
