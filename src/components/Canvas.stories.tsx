@@ -256,6 +256,17 @@ LensBlur.args = {
   }]
 };
 
+export const UnsharpMask = Template.bind({});
+
+UnsharpMask.args = {
+  effects: [{
+    unsharpMask: {
+      radius: 12,
+      strength: 1,
+    }
+  }]
+};
+
 
 export const ColorHalftone = Template.bind({});
 

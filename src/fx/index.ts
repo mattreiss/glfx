@@ -17,6 +17,7 @@ export * from "./sepia";
 export * from "./swirl";
 export * from "./tiltShift";
 export * from "./triangleBlur";
+export * from "./unsharpMask";
 export * from "./vibrance";
 export * from "./vignette";
 export * from "./zoomBlur";
