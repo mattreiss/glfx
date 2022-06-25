@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Canvas from './Canvas';
+import { getInverse, getSquareToQuad, multiply } from '../fx';
+import { clamp } from '../canvas';
 
 export default {
   title: 'components/Canvas',
@@ -170,6 +172,143 @@ Vignette.args = {
     vignette: {
       amount: 0.9,
       size: 0.1,
+    }
+  }]
+};
+
+export const MatrixWarp = Template.bind({});
+
+const before = [175,156,496,55,161,279,504,330].map(n => n/2);
+const after = [277,229,418,221,269,297,409,315].map(n => n/2);
+var a = getSquareToQuad.apply(null, after);
+var b = getSquareToQuad.apply(null, before);
+var c = multiply(getInverse(a), b);
+
+MatrixWarp.args = {
+  effects: [{
+    matrixWarp: {
+      matrix: c,
+      inverse: false,
+      useTextureSpace: false
+    }
+  }]
+};
+
+
+export const Perspective = Template.bind({});
+
+Perspective.args = {
+  effects: [{
+    perspective: {
+      before: [100,100, 200,100, 200,200, 100,200],
+      after: [120,70, 180,70, 200,100, 100,100]
+    }
+  }]
+};
+
+export const ZoomBlur = Template.bind({});
+
+ZoomBlur.args = {
+  effects: [{
+    zoomBlur: {
+      strength: 0.1,
+      center: [width / 2, height / 2]
+    }
+  }]
+};
+
+export const TiltShift = Template.bind({});
+
+TiltShift.args = {
+  effects: [{
+    tiltShift: {
+      startX: 45,
+      startY: 180,
+      endX: 240,
+      endY: 145,
+      blurRadius: 15,
+      gradientRadius: 200
+    }
+  }]
+};
+
+export const TriangleBlur = Template.bind({});
+
+TriangleBlur.args = {
+  effects: [{
+    triangleBlur: {
+      radius: 12,
+      brightness: 1,
+      angle: 2.2
+    }
+  }]
+};
+
+export const LensBlur = Template.bind({});
+
+LensBlur.args = {
+  effects: [{
+    lensBlur: {
+      radius: 12,
+      brightness: 1,
+      angle: 2.2
+    }
+  }]
+};
+
+
+export const ColorHalftone = Template.bind({});
+
+ColorHalftone.args = {
+  effects: [{
+    colorHalftone: {
+      center: [width / 2, height / 2],
+      size: 10,
+      angle: 0.2
+    }
+  }]
+};
+
+export const DotScreen = Template.bind({});
+
+DotScreen.args = {
+  effects: [{
+    dotScreen: {
+      center: [width / 2, height / 2],
+      scale: 10,
+      angle: 0.9
+    }
+  }]
+};
+
+export const EdgeWork = Template.bind({});
+
+EdgeWork.args = {
+  effects: [{
+    edgeWork: {
+      radius: 20
+    }
+  }]
+};
+
+
+export const HexagonalPixelate = Template.bind({});
+
+HexagonalPixelate.args = {
+  effects: [{
+    hexagonalPixelate: {
+      center: [width / 2, height / 2],
+      scale: 15,
+    }
+  }]
+};
+
+export const Ink = Template.bind({});
+
+Ink.args = {
+  effects: [{
+    ink: {
+      strength: 0.7
     }
   }]
 };

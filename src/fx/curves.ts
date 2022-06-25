@@ -1,14 +1,10 @@
 import * as fx from 'glfx-es6';
-import { clamp, renderWebGLImage, runFragmentShader, SplineInterpolator } from '../canvas';
-
-// function splineInterpolate(points: any) {
-//     const interpolator: any = SplineInterpolator(points);
-//     const array = [];
-//     for (var i = 0; i < 256; i++) {
-//         array.push(clamp(0, Math.floor(interpolator.interpolate(i / 255) * 256), 255));
-//     }
-//     return array;
-// }
+import { 
+    // clamp, 
+    // runFragmentShader, 
+    // splineInterpolate,
+    renderWebGLImage, 
+} from '../canvas';
 
 export type Vec2 = [number, number]
 export type CurvesOptions = {
@@ -44,6 +40,8 @@ export function curves(
     renderWebGLImage(fxcanvas, canvas);
     return;
 
+    // TODO: get this code working
+
     // const gl = canvas.getContext('webgl');
     // if (!gl) {
     //     throw "Error getting webgl context!"
@@ -55,12 +53,12 @@ export function curves(
     // if (!green && !blue) {
     //     green = blue = red;
     // } else {
-    //     green = splineInterpolate(green);
-    //     blue = splineInterpolate(blue);
+    //     green = splineInterpolate(green || red);
+    //     blue = splineInterpolate(blue || red);
     // }
     // const array: any[] = [];
     // for (let i = 0; i < 256; i++) {
-    //     array.splice(array.length, 0, red[i], green[i], blue[i], 255);
+    //     array.splice(array.length, 0, red[i], green![i], blue![i], 255);
     // }
     // const texture = gl.createTexture();
     // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
