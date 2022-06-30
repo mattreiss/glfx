@@ -22,7 +22,6 @@ export function applyEffects(
     _canvas.height = image.height;
     renderWebGLImage(image, _canvas);
     effects?.forEach((effectProps: EffectProps) => {
-        console.log('render Canvas', effectProps);
         Object.keys(effectProps).forEach((name) => {
             const _name = name as keyof typeof effectProps;
             if (effectProps[_name]) {
