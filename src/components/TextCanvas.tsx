@@ -1,15 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 
-type TextStyleType = "bold" | "italic" | "underline" | "color";
-type TextSelection = [number, number];
+export type TextStyleType = "bold" | "italic" | "underline" | "color";
+export type TextSelection = [number, number];
 
-type TextStyle = {
+export type TextStyle = {
     type: TextStyleType,
     selection: TextSelection,
     value?: string,
 }
 
-type TextProps = {
+export type TextCanvasProps = {
     width: number;
     height: number;
     setHeight?: (height: number) => void;
@@ -25,7 +25,7 @@ type TextProps = {
     setFocused?: (focused: boolean) => void;
 };
 
-const Text : React.FC<TextProps> = ({
+const TextCanvas : React.FC<TextCanvasProps> = ({
     width,
     height,
     setHeight,
@@ -71,7 +71,7 @@ const Text : React.FC<TextProps> = ({
         const textX = x - (textWidth / 2);
         const textY = y - (textHeight / 2);
 
-        if (textSelection) {
+        if (textSelection && focused) {
             // get selection position
             const selectionStart = ctx.measureText(text.substring(0, textSelection[0])).width;
             const selectionEnd = ctx.measureText(text.substring(0, textSelection[1])).width;
@@ -94,6 +94,46 @@ const Text : React.FC<TextProps> = ({
         textSelection,
         fontFamily,
         fontSize
+    ]);
+
+    useEffect(() => {
+        if (!focused) return;
+        function onKeyPress(e: KeyboardEvent) {
+            let newText = text + e.key;
+            if (textSelection) {
+                // i is inclusive
+                // j is exclusive
+                const [i, j] = textSelection;
+                if (i === 0) {
+                    newText = text.substring(j);
+                } else {
+                    newText = text.substring(0, i);
+                    newText += e.key;
+                    newText += text.substring(j);
+                }
+            }
+            setText?.(newText);
+        }
+        function onKeyDown(e: KeyboardEvent) {
+            switch (e.key) {
+                case "Escape":
+                    setFocused?.(false);
+                    break;
+            }
+        }
+        document.addEventListener("keypress", onKeyPress);
+        document.addEventListener("keydown", onKeyDown);
+        return () => {
+            document.removeEventListener("keypress", onKeyPress);
+            document.removeEventListener("keydown", onKeyDown);
+        }
+    }, [
+        focused, 
+        setFocused,
+        text,
+        setText,
+        textSelection,
+        setTextSelection
     ]);
 
     const onDoubleClick = () => {
@@ -128,4 +168,4 @@ const Text : React.FC<TextProps> = ({
     )
 };
 
-export default Text;
+export default TextCanvas;

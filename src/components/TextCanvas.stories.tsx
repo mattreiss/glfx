@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Text from './Text';
+import TextCanvas from './TextCanvas';
 
 export default {
-  title: 'components/Text',
-  component: Text,
+  title: 'components/TextCanvas',
+  component: TextCanvas,
   parameters: {
     // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'fullscreen',
   },
-} as ComponentMeta<typeof Text>;
+} as ComponentMeta<typeof TextCanvas>;
 
 const width = 300;
 const height = 300;
 
-const Template: ComponentStory<typeof Text> = (args) => {
+const Template: ComponentStory<typeof TextCanvas> = (args) => {
   return (
-    <Text {...args}
+    <TextCanvas {...args}
       width={width}
       height={height} />
   )
@@ -31,8 +31,9 @@ Default.args = {
   textSelection: [0,0],
   fontFamily: "arial",
   fontSize: 48,
+  focused: true,
   onClick: () => console.log("click"),
-  focused: true
+  setText: (text) => console.log("setText", text),
 };
 
 export const Selection = Template.bind({});
@@ -43,6 +44,7 @@ Selection.args = {
   textSelection: [3,10],
   fontFamily: "arial",
   fontSize: 48,
+  focused: true,
   onClick: () => console.log("click"),
-  focused: true
+  setText: (text) => console.log("setText", text),
 };
