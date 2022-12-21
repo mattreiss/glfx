@@ -12,35 +12,37 @@ type TextStyle = {
 type TextProps = {
     width: number;
     height: number;
+    setHeight?: (height: number) => void;
     text: string;
+    setText?: (text: string) => void;
     textStyles: TextStyle[];
-    textSelection: TextSelection;
+    textSelection?: TextSelection;
+    setTextSelection?: (selection: TextSelection) => void;
     fontFamily: string;
     fontSize: number;
     onClick?: () => void;
-    onFocus?: () => void;
-    onBlur?: () => void;
-    onChange?: (text: string) => void;
-    onSelection?: (selection: TextSelection) => void;
-    onUpdateHeight?: (height: number) => void;
+    focused?: boolean;
+    setFocused?: (focused: boolean) => void;
 };
 
 const Text : React.FC<TextProps> = ({
     width,
     height,
+    setHeight,
     text,
+    setText,
     textStyles,
     textSelection,
+    setTextSelection,
     fontFamily,
     fontSize,
     onClick,
-    onFocus,
-    onBlur,
-    onChange,
-    onSelection,
-    onUpdateHeight
+    focused,
+    setFocused,
 }) => {
-    const ref = useRef<HTMLCanvasElement>(null);   
+    const ref = useRef<HTMLCanvasElement>(null);
+    const clickRef = useRef<number>(0); 
+    const clickTimeoutRef = useRef<any>(); 
 
     useEffect(() => {
         const canvas = ref.current;
@@ -51,7 +53,7 @@ const Text : React.FC<TextProps> = ({
         if (!ctx) {
             return;
         }
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, width, height);
 
         // set text position
         const x = width / 2;
@@ -61,8 +63,9 @@ const Text : React.FC<TextProps> = ({
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle'
         ctx.font = `${fontSize}px ${fontFamily}`;
-        ctx.fillStyle = 'black'
+        ctx.fillStyle = 'black';
         ctx.fillText(text, x, y);
+        console.log("draw text", text);
     }, [
         width,
         height,
@@ -70,11 +73,29 @@ const Text : React.FC<TextProps> = ({
         textStyles,
         textSelection,
         fontFamily,
-        fontSize,
-        onClick,
-        onChange,
-        onSelection,
+        fontSize
     ]);
+
+    const onDoubleClick = () => {
+        setFocused?.(true);
+    }
+
+    const waitForDoubleClick = () => {
+        clickRef.current += 1;
+        if (clickTimeoutRef.current) {
+            clearTimeout(clickTimeoutRef.current);
+        }
+        if (clickRef.current === 2) {
+            onDoubleClick();
+            clickRef.current = 0;
+        }
+        clickTimeoutRef.current = setTimeout(() => {
+            if (clickRef.current === 1) {
+                onClick?.();
+            }
+            clickRef.current = 0;
+        }, 400);
+    }
 
     return (
         <canvas 
@@ -82,6 +103,7 @@ const Text : React.FC<TextProps> = ({
             width={width}
             height={height}
             style={{ border: '1px solid red' }}
+            onClick={waitForDoubleClick}
         />
     )
 };

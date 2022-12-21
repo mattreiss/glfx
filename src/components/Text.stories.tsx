@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Text from './Text';
-import { getInverse, getSquareToQuad, multiply } from '../fx';
 
 export default {
   title: 'components/Text',
@@ -32,5 +31,18 @@ Default.args = {
   textSelection: [0,0],
   fontFamily: "arial",
   fontSize: 48,
-  onClick: () => console.log("click")
+  onClick: () => console.log("click"),
+  focused: true
+};
+
+export const Selection = Template.bind({});
+
+Selection.args = {
+  text: "Sample Text",
+  textStyles: [],
+  textSelection: [1,7],
+  fontFamily: "arial",
+  fontSize: 48,
+  onClick: () => console.log("click"),
+  focused: true
 };
