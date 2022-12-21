@@ -63,9 +63,29 @@ const Text : React.FC<TextProps> = ({
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle'
         ctx.font = `${fontSize}px ${fontFamily}`;
+
+        // measure text dimensions
+        const metrics = ctx.measureText(text);
+        const textWidth = metrics.width;
+        const textHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+        const textX = x - (textWidth / 2);
+        const textY = y - (textHeight / 2);
+
+        if (textSelection) {
+            // get selection position
+            const selectionStart = ctx.measureText(text.substring(0, textSelection[0])).width;
+            const selectionEnd = ctx.measureText(text.substring(0, textSelection[1])).width;
+
+            // draw selection
+            ctx.fillStyle = 'rgba(50,150,255,0.4)';
+            ctx.fillRect(textX + selectionStart, textY, selectionEnd - selectionStart, textHeight);
+            console.log(textX + selectionStart, textY, selectionEnd - selectionStart, textHeight);
+        }
+
+
+        // draw text
         ctx.fillStyle = 'black';
         ctx.fillText(text, x, y);
-        console.log("draw text", text);
     }, [
         width,
         height,

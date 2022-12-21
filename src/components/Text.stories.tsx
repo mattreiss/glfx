@@ -40,7 +40,7 @@ export const Selection = Template.bind({});
 Selection.args = {
   text: "Sample Text",
   textStyles: [],
-  textSelection: [1,7],
+  textSelection: [3,10],
   fontFamily: "arial",
   fontSize: 48,
   onClick: () => console.log("click"),
